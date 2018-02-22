@@ -3,6 +3,10 @@ terraform {
     backend "s3" {}
 }
 
+provider "aws" {
+    region = "${var.env_region}"
+}
+
 resource "aws_instance" "example" {
     ami = "${var.ami_name}"
     count = "${var.ec2_instance_count}"
