@@ -1,9 +1,5 @@
 terraform {
     required_version = ">= 0.10, < 0.12"
-}
-
-terraform {
-    required_version = ">= 0.10, < 0.12"
     backend "s3" {
         region   = "${var.environment_region}"
         key      = "sample/${var.environment_name}/test/terraform.tfstate"
