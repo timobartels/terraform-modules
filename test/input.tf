@@ -17,3 +17,6 @@ variable "cluster_name" {
 variable "ami_name" {
     description = "ID name of the AMI"
 }
+variables "env_region" {
+    description = "AWS region to deploy"
+}
