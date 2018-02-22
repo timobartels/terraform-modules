@@ -12,7 +12,7 @@ terraform {
 }
 
 resource "aws_instance" "example" {
-    ami = "${var.ami_name"
+    ami = "${var.ami_name}"
     count = "${var.ec2_instance_count}"
     instance_type = "${var.ec2_instance_type}"
     vpc_security_group_ids = ["${aws_security_group.example-SG.id}"]
