@@ -17,12 +17,3 @@ variable "cluster_name" {
 variable "ami_name" {
     description = "ID name of the AMI"
 }
-variable "environment_name" {
-    description = "Name of the distinct environment"
-}
-variable "terraform_state_bucket" {
-    description = "Name of S3 bucket that keeps the tfstate files"
-}
-variable "environment_region" {
-    description = "AWS region"
-}
