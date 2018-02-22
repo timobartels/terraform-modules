@@ -1,6 +1,6 @@
 terraform {
     required_version = ">= 0.10, < 0.12"
-    backend "S3" {}
+    backend "s3" {}
 }
 
 resource "aws_instance" "example" {
