@@ -8,7 +8,7 @@ provider "aws" {
 }
 
 module "test2" {
-    source = "../test2"
+    source = "./test2"
 
     m_cluster_name = "${var.cluster_name}"
     m_ec2_instance_count = "${var.ec2_instance_count}"
