@@ -1,3 +1,7 @@
+terraform {
+  required_version = ">= 0.10.0"
+}
+
 resource "aws_instance" "example" {
     ami = "${var.ami_name}"
     count = "${var.ec2_instance_count}"

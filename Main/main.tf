@@ -7,7 +7,7 @@ provider "aws" {
     region = "${var.env_region}"
 }
 
-module "webserver_test" {
+module "test2" {
     source = "../test2"
 
     cluster_name = "test-Main-cluster"
