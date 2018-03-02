@@ -10,10 +10,10 @@ provider "aws" {
 module "test2" {
     source = "../test2"
 
-    m_cluster_name = "test-Main-cluster"
-    m_ec2_instance_count = 1
-    m_ec2_instance_name = "test-instance"
-    m_ec2_instance_type = "t2.micro"
-    m_server_port = "8080"
-    m_ami_name = "ami-2d39803a"
+    m_cluster_name = "${var.cluster_name}"
+    m_ec2_instance_count = "${var.ec2_instance_count}"
+    m_ec2_instance_name = "${var.ec2_instance_name}"
+    m_ec2_instance_type = "${var.ec2_instance_type}"
+    m_server_port = "${var.server_port}"
+    m_ami_name = "${var.ami_name}"
 }
