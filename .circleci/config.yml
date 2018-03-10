@@ -38,6 +38,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
+            - test.tfvars
             - .terraform # persist this to be able to apply execution plan without running init once more
             - tfplan
 
@@ -50,6 +51,16 @@ jobs:
       - run:
           name: terraform apply
           command: terraform apply -input=false tfplan
+
+  destroy_infrastructure:
+    <<: *terraform
+    working_directory: /tmp/workspace
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: terraform destroy
+          command: terraform destroy -var-file=test.tfvars -f
 
 master_workflow_filters: &master_workflow_filters
   filters:
@@ -73,3 +84,6 @@ workflows:
       - apply_infrastructure:
           requires:
             - approve_infrastructure
+      - destroy_infrastructure:
+          requires:
+            - apply_infrastructure
