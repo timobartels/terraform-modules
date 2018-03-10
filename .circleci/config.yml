@@ -60,7 +60,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: terraform destroy
-          command: terraform destroy -var-file=test.tfvars -f
+          command: terraform destroy -var-file=test.tfvars -force
 
 master_workflow_filters: &master_workflow_filters
   filters:
