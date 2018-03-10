@@ -51,6 +51,11 @@ jobs:
       - run:
           name: terraform apply
           command: terraform apply -input=false tfplan
+      - persist_to_workspace:
+          root: .
+          paths:
+            - test.tfvars
+            - .terraform # persist this to be able to apply execution plan without running init once more
 
   destroy_infrastructure:
     <<: *terraform
