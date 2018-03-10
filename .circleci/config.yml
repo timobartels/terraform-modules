@@ -38,7 +38,7 @@ jobs:
           command: terraform init -input=false
       - run:
           name: terraform plan
-          command: terraform plan -input=false -out=tfplan
+          command: terraform plan -input=false -out=tfplan -var-file=test.tfvars
       - persist_to_workspace:
           root: .
           paths:
