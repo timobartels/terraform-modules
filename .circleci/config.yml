@@ -68,8 +68,6 @@ workflows:
       - test_and_build_application
       - validate_infrastructure:
           <<: *master_workflow_filters
-          requires:
-            - test_and_build_application
       - plan_infrastructure:
           requires:
             - validate_infrastructure
