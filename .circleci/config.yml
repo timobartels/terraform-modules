@@ -36,7 +36,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: terraform init
-          command: terraform init -input=false
+          command: terraform init -from-module=github.com/timobartels/terraform-modules -backend-config=test-backend.conf
       - run:
           name: terraform plan
           command: terraform plan -input=false -out=tfplan -var-file=test.tfvars
