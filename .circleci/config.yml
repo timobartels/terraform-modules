@@ -52,11 +52,6 @@ jobs:
       - run:
           name: terraform apply
           command: terraform apply -input=false tfplan
-      - persist_to_workspace:
-          root: .
-          paths:
-            - test.tfvars
-            - test-backend.conf
 
   destroy_infrastructure:
     <<: *terraform
@@ -64,6 +59,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
+      - checkout
       - run:
           name: terraform destroy
           command: |
