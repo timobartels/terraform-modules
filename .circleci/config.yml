@@ -63,10 +63,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - checkout
       - run:
           name: terraform destroy
-          command: terraform destroy -var-file=test.tfvars -force
+          command: |
+          terraform init
+          terraform destroy -var-file=test.tfvars -force
 
 master_workflow_filters: &master_workflow_filters
   filters:
