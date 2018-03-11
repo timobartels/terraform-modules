@@ -4,7 +4,7 @@ version: 2
 terraform: &terraform
   docker:
     - image: hashicorp/terraform:0.11.3
-  working_directory: /tmp/workspace/test2
+  working_directory: /tmp/workspace
 
 jobs:
   validate_infrastructure:
@@ -57,7 +57,6 @@ jobs:
           paths:
             - test.tfvars
             - test-backend.conf
-            - .terraform # persist this to be able to apply execution plan without running init once more
 
   destroy_infrastructure:
     <<: *terraform
