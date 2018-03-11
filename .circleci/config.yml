@@ -89,6 +89,10 @@ workflows:
       - apply_infrastructure:
           requires:
             - approve_infrastructure
+      - approve_cleanup:
+          type: approval
+          requires:
+            - apply_infrastructure
       - destroy_infrastructure:
           requires:
             - apply_infrastructure
