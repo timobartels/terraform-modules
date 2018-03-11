@@ -2,9 +2,10 @@ version: 2
 
 jobs:
   build:
-    machine: true
-      image: circleci/classic:latest
+    machine:
+      enabled: true
 
+  prepare:
     steps:
       - run:
           name: Install terraform
@@ -18,4 +19,7 @@ workflows:
   version: 2
   terraform:
     jobs:
-      - build:
+      - prepare:
+          requires:
+            - build
+
