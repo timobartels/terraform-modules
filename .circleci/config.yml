@@ -53,19 +53,6 @@ jobs:
           name: terraform apply
           command: terraform apply -input=false tfplan
 
-  destroy_infrastructure:
-    <<: *terraform
-    working_directory: /tmp/workspace
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - checkout
-      - run:
-          name: terraform destroy
-          command: |
-            terraform init -backend-config=test-backend.conf
-            terraform destroy -var-file=test.tfvars -force
-
 master_workflow_filters: &master_workflow_filters
   filters:
     branches:
@@ -88,10 +75,3 @@ workflows:
       - apply_infrastructure:
           requires:
             - approve_infrastructure
-      - approve_cleanup:
-          type: approval
-          requires:
-            - apply_infrastructure
-      - destroy_infrastructure:
-          requires:
-            - approve_cleanup
