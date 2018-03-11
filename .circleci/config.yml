@@ -95,4 +95,4 @@ workflows:
             - apply_infrastructure
       - destroy_infrastructure:
           requires:
-            - apply_infrastructure
+            - approve_cleanup
