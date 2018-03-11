@@ -66,8 +66,8 @@ jobs:
       - run:
           name: terraform destroy
           command: |
-          terraform init
-          terraform destroy -var-file=test.tfvars -force
+            terraform init
+            terraform destroy -var-file=test.tfvars -force
 
 master_workflow_filters: &master_workflow_filters
   filters:
