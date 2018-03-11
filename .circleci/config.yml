@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: terraform init
-          command: terraform init -backend-config=test-backend.conf
+          command: terraform init
       - run:
           name: Validate Terraform configurations
           command: find . -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (terraform validate -check-variables=false "$m" && echo "√ $m") || exit 1 ; done
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run:
           name: terraform init
-          command: terraform init -backend-config=test-backend.conf
+          command: terraform init
       - run:
           name: terraform plan
           command: terraform plan -input=false -out=tfplan -var-file=test.tfvars
@@ -65,9 +65,7 @@ jobs:
           at: /tmp/workspace
       - run:
           name: terraform destroy
-          command: |
-            terraform refresh
-            terraform destroy -var-file=test.tfvars -force
+          command: terraform destroy -var-file=test.tfvars -force
 
 master_workflow_filters: &master_workflow_filters
   filters:
