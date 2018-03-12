@@ -14,6 +14,11 @@ jobs:
           at: /tmp/workspace
       - checkout
       - run:
+          name: Where am I
+          command: |
+            pwd
+            ls -al
+      - run:
           name: terraform init
           command: terraform init -backend-config=test-backend.conf
       - run:
@@ -49,6 +54,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
+      - run:
+          name: Where am I
+          command: |
+            pwd
+            ls -al
       - run:
           name: terraform apply
           command: terraform apply -input=false tfplan
