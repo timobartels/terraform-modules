@@ -41,7 +41,6 @@ jobs:
 
   apply_infrastructure:
     <<: *terraform
-    working_directory: /tmp/workspace
     steps:
       - attach_workspace:
           at: /tmp/workspace
