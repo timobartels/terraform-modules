@@ -4,6 +4,7 @@ version: 2
 terraform: &terraform
   docker:
     - image: hashicorp/terraform:0.11.3
+  working_directory: /tmp/workspace
 
 jobs:
   validate_infrastructure:
@@ -18,6 +19,9 @@ jobs:
       - run:
           name: Validate Terraform configurations
           command: find . -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (terraform validate -check-variables=false "$m" && echo "√ $m") || exit 1 ; done
+      - run:
+          name: Install tflint
+          command: curl -L -o /tmp/tflint.zip https://github.com/wata727/tflint/releases/download/v0.4.2/tflint_linux_amd64.zip && unzip /tmp/tflint.zip -d /usr/local/bin
   
   plan_infrastructure:
     <<: *terraform
@@ -41,14 +45,10 @@ jobs:
 
   apply_infrastructure:
     <<: *terraform
+    working_directory: /tmp/workspace
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run:
-          name: Debug
-          command: |
-            pwd
-            ls -al
       - run:
           name: terraform apply
           command: terraform apply -input=false tfplan
