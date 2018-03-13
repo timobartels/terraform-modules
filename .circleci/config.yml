@@ -27,6 +27,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/test/
+      - checkout
       - run:
           name: terraform init
           command: terraform init -backend-config=test-backend.conf
