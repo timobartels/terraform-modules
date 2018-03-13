@@ -4,14 +4,12 @@ version: 2
 terraform: &terraform
   docker:
     - image: hashicorp/terraform:0.11.3
-  working_directory: /tmp/workspace
+  working_directory: ~/test/
 
 jobs:
   validate_infrastructure:
     <<: *terraform
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
       - checkout
       - run:
           name: terraform init
@@ -28,7 +26,7 @@ jobs:
     <<: *terraform
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/test/
       - checkout
       - run:
           name: terraform init
@@ -43,10 +41,9 @@ jobs:
 
   apply_infrastructure:
     <<: *terraform
-    working_directory: /tmp/workspace
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/test/
       - run:
           name: terraform apply
           command: terraform apply -input=false tfplan
