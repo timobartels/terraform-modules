@@ -55,6 +55,7 @@ master_workflow_filters: &master_workflow_filters
     branches:
       only:
         - master
+        - /^test-.*/
 
 workflows:
   version: 2
