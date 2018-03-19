@@ -1,4 +1,3 @@
-# This is just a test module
 terraform {
   required_version = ">= 0.10.0"
 }
