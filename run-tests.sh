@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Identify files that changed as part of pull request
-changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master)`
+export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master)`
 
 # Extract directories that were changed
-folders=`echo $changed_files | cut -d '/' -f1 | uniq`
+export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
 
 echo "Files changed in this pull request: "
 echo $changed_files
