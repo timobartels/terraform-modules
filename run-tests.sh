@@ -1,6 +1,12 @@
 #!/bin/sh
 
-export mergebase=`curl https://api.github.com/repos/timobartels/terraform-modules/pulls/3 | jq .base.sha | sed 's/\"//g'`
+export org=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f4`
+export repo=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f5`
+export pr=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f7`
+
+export GIT_API_URL="https://api.github.com/repos/$org/$repo/pulls/$pr"
+
+export mergebase=`curl $GIT_API_URL | jq .base.sha | sed 's/\"//g'`
 
 # Identify files that changed as part of pull request
 export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $mergebase`
