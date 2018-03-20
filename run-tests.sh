@@ -10,6 +10,8 @@ echo "Files changed in this pull request: "
 echo $changed_files
 echo "Folders: "
 echo $folders
+echo "CIRCLE_BRANCH: "
+echo $CIRCLE_BRANCH
 
 for folder in $folders
 do
