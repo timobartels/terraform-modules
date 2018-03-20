@@ -2,7 +2,8 @@
 
 if [ $CIRCLE_PULL_REQUEST -z ];
 then
-    exit 1;
+    echo "No pull request, skipping this test"
+    exit 0;
 fi
 
 export org=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f4`
