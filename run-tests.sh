@@ -6,6 +6,10 @@ export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge
 # Extract directories that were changed
 export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
 
+export whichgit=`which git`
+
+echo "Which Git:"
+echo $whichgit
 echo "Files changed in this pull request: "
 echo $changed_files
 echo "Folders: "
