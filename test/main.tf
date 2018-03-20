@@ -1,4 +1,4 @@
-# this is a test module only
+# this is a test module
 terraform {
     required_version = ">= 0.10, < 0.12"
     backend "s3" {}
