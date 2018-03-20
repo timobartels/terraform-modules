@@ -1,7 +1,9 @@
 #!/bin/sh
 
+export mergebase=`curl https://api.github.com/repos/timobartels/terraform-modules/pulls/3 | jq .base.sha | sed 's/\"//g'`
+
 # Identify files that changed as part of pull request
-export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master)`
+export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $mergebase`
 
 # Extract directories that were changed
 export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
