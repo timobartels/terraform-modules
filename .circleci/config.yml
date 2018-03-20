@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run:
           name: Install jq
-          command: apt-get update && apt-get install -y jq
+          command: apk add --update jq
       - run:
           name: terraform init
           command: terraform init -backend-config=test-backend.conf
