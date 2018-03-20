@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ $CIRCLE_PULL_REQUEST -z ];
+then
+    exit 1;
+fi
+
 export org=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f4`
 export repo=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f5`
 export pr=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f7`
