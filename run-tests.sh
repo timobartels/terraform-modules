@@ -1,9 +1,7 @@
 #!/bin/sh
 
 # Identify files that changed as part of pull request
-#export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master)`
-export mergebase=`git merge-base $CIRCLE_BRANCH master`
-export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $mergebase`
+export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master)`
 
 # Extract directories that were changed
 export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
@@ -15,16 +13,15 @@ echo $folders
 
 for folder in $folders
 do
-    if [ $folder = "test" ];
+    if [ $folder == "test" ];
     then
         echo "Changes detected in test folder ..."
         cd test && pwd
-    elif [ $folder = "test2" ];
+    elif [ $folder == "test2" ];
     then
         echo "Changes detected in test2 folder ..."
         cd test2 && pwd
     else
-        echo "No changes detected that require test run!"
-        exit 0;
+        continue
     fi
 done
