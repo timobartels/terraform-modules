@@ -3,9 +3,7 @@
 # Identify files that changed as part of pull request
 export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master)`
 
-echo "TEST"
-
-`git version`
+`git --no-pager diff --name-only test-again`
 
 # Extract directories that were changed
 export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
@@ -14,8 +12,6 @@ echo "Files changed in this pull request: "
 echo $changed_files
 echo "Folders: "
 echo $folders
-
-echo "TEST2"
 
 for folder in $folders
 do
@@ -31,5 +27,3 @@ do
         continue
     fi
 done
-
-echo "TEST3"
