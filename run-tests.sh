@@ -12,14 +12,14 @@ export mergebase=`curl $GIT_API_URL | jq .base.sha | sed 's/\"//g'`
 export changed_files=`git --no-pager diff --name-only $CIRCLE_BRANCH $mergebase`
 
 # Extract directories that were changed
-export folders=`cat $changed_files | cut -d '/' -f1 | uniq`
+export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
 
 echo "Files changed in this pull request: "
 echo $changed_files
 echo "Folders: "
 echo $folders
 
-for folder in $folders
+for folder in `echo $changed_files | cut -d '/' -f1 | uniq`
 do
     if [ $folder == "test" ];
     then
