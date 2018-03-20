@@ -7,7 +7,9 @@ export test=`git merge-base test-again master`
 
 echo $test
 
-`git --no-pager diff --name-only test-again $test`
+export out=`git --no-pager diff --name-only test-again $test`
+
+echo $out
 
 # Extract directories that were changed
 export folders=`echo $changed_files | cut -d '/' -f1 | uniq`
