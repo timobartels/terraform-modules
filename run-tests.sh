@@ -2,8 +2,6 @@
 
 export TEST_ENV=$1
 
-echo "TEST_ENV value is: $TEST_ENV"
-
 if [ -z $CIRCLE_PULL_REQUEST ]
 then
     echo "No pull request, skipping this test"
@@ -26,11 +24,11 @@ echo $folders
 
 for folder in $folders
 do
-    if [ $folder = "test" ] && [ $folder = $TEST_ENV ];
+    if [ $folder = $TEST_ENV ];
     then
         echo "Changes detected in test folder ..."
         cd test && pwd
-    elif [ $folder = "test2" ] && [$folder = $TEST_ENV ];
+    elif [ $folder = $TEST_ENV ];
     then
         echo "Changes detected in test2 folder ..."
         cd test2 && pwd
