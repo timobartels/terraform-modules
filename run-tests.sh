@@ -4,10 +4,10 @@ export TEST_ENV=$1
 
 echo "TEST_ENV value is: $TEST_ENV"
 
-if [ $CIRCLE_PULL_REQUEST -z ];
+if [ -z $CIRCLE_PULL_REQUEST ]
 then
     echo "No pull request, skipping this test"
-    exit 0;
+    exit 0
 fi
 
 export org=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f4`
