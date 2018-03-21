@@ -26,14 +26,8 @@ for folder in $folders
 do
     if [ $folder = $TEST_ENV ];
     then
-        echo "Changes detected in test folder ..."
-        cd test && pwd
-    elif [ $folder = $TEST_ENV ];
-    then
-        echo "Changes detected in test2 folder ..."
-        cd test2 && pwd
-    else
-        continue
+        echo "Changes detected in $TEST_ENV folder ..."
+        cd $TEST_ENV && pwd
     fi
 done
 
