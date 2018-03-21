@@ -26,11 +26,11 @@ echo $folders
 
 for folder in $folders
 do
-    if [ $folder = "test" ] && [ $folder = $TEST_ENV ]
+    if [ $folder = "test" ] && [ $folder = $TEST_ENV ];
     then
         echo "Changes detected in test folder ..."
         cd test && pwd
-    elif [ $folder = "test2" ] && [$folder = $TEST_ENV ]
+    elif [ $folder = "test2" ] && [$folder = $TEST_ENV ];
     then
         echo "Changes detected in test2 folder ..."
         cd test2 && pwd
@@ -38,3 +38,4 @@ do
         continue
     fi
 done
+
