@@ -8,16 +8,15 @@ then
     exit 0
 fi
 
-export org=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f4`
-export repo=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f5`
 export pr=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f7`
 
-export GIT_API_URL="https://api.github.com/repos/$org/$repo/pulls/$pr"
+git fetch origin "pull/$pr/head:pr_$pr"
+git checkout "pr_$pr"
+export folders=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master) | cut -d '/' -f1 | uniq`
 
-export mergebase=`curl $GIT_API_URL | jq .base.sha | sed 's/\"//g'`
 
 # Extract directories that were changed
-export folders=`git --no-pager diff --name-only $CIRCLE_BRANCH $mergebase | cut -d '/' -f1 | uniq`
+#export folders=`git --no-pager diff --name-only $CIRCLE_BRANCH $mergebase | cut -d '/' -f1 | uniq`
 
 echo "Folders that were affected by this PR: "
 echo $folders
