@@ -12,6 +12,10 @@ export pr=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f7`
 
 git fetch origin "pull/$pr/head:pr_$pr"
 git checkout "pr_$pr"
+export MB=`git merge-base FETCH_HEAD master`
+
+echo "Mergebase:  $MB"
+
 export folders=`git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)`
 
 echo $folders
