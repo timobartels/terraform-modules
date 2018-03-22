@@ -2,7 +2,7 @@
 
 export TEST_ENV=$1
 
-if [ -z $CIRCLE_PULL_REQUEST ]
+if [ -z "$CIRCLE_PULL_REQUEST" ]
 then
     echo "No pull request, skipping this test"
     exit 0
@@ -19,14 +19,14 @@ fi
 export folders=$(git --no-pager diff origin/master --name-only | cut -d '/' -f1 | uniq)
 
 echo "Folders that were affected by this PR: "
-echo $folders
+echo "$folders"
 
 for folder in $folders
 do
-    if [ $folder = $TEST_ENV ];
+    if [ "$folder" = "$TEST_ENV" ];
     then
         echo "Changes detected in $TEST_ENV folder ..."
-        cd $TEST_ENV && pwd
+        cd "$TEST_ENV" && pwd
     fi
 done
 
