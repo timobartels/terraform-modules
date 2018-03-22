@@ -12,7 +12,7 @@ export pr=`echo $CIRCLE_PULL_REQUEST | cut -d '/' -f7`
 
 git fetch origin "pull/$pr/head:pr_$pr"
 git checkout "pr_$pr"
-export folders=`git --no-pager diff --name-only $CIRCLE_BRANCH $(git merge-base $CIRCLE_BRANCH master) | cut -d '/' -f1 | uniq`
+export folders=`git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master) | cut -d '/' -f1 | uniq`
 
 
 # Extract directories that were changed
